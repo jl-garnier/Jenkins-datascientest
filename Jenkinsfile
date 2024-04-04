@@ -46,8 +46,7 @@ pipeline {
             
             steps {
                 input {
-                    message "Proceed to push on main"
-                    ok "Yes"
+                    message: "Approve push on main?", ok: "Yes"
 
                 }
                 echo "User: ${username} requested to push the code the main branch"
