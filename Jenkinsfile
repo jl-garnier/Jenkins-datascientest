@@ -31,7 +31,10 @@ pipeline {
                 //     sh 'python3.8 -m unittest'
                 // }
                 withPythonEnv('python3.8') {
-                    sh 'python3.8 -m unittest'
+                    sh '''
+                    python3.8 -m pip install -r requirements.txt'
+                    python3.8 -m unittest
+                    '''
                 }
             }
 
