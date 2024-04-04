@@ -1,9 +1,2 @@
-<<<<<<< HEAD
-numpy
-pandas
-plotly.express
-streamlit
-=======
 flask
 unittest
->>>>>>> main
