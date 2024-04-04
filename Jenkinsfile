@@ -32,7 +32,7 @@ pipeline {
                 // }
                 withPythonEnv('python3.8') {
                     sh '''
-                    python3.8 -m pip install -r requirements.txt'
+                    python3.8 -m pip install flask'
                     python3.8 -m unittest
                     '''
                 }
