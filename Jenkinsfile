@@ -30,7 +30,7 @@ pipeline {
                 //     echo 'Execute units tests'
                 //     sh 'python3.8 -m unittest'
                 // }
-                withPythonEnv('python') {
+                withPythonEnv('python3.8') {
                     sh 'python3.8 -m unittest'
                 }
             }
