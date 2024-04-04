@@ -71,7 +71,7 @@ pipeline {
             
             parallel {
                 stage('Pushing Image') {
-                    // environment variables at stage level using docker credentials
+                    // set environment variables at stage level using docker credentials
                     environment {
                         DOCKERHUB_CREDENTIALS_USR = credentials('docker_jenkins')  // variable secret
                         DOCKERHUB_CREDENTIALS_PSW =  credentials('DOCKER_HUB_PASS')  // variable secret
