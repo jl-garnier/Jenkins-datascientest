@@ -26,12 +26,12 @@ pipeline {
         stage('Testing') {
 
             steps {
-                script { 
-                    echo 'Execute units tests'
-                    sh 'python -m unittest'
-                }
+                // script { 
+                //     echo 'Execute units tests'
+                //     sh 'python3.8 -m unittest'
+                // }
                 withPythonEnv('python') {
-                    sh 'python -m unittest'
+                    sh 'python3.8 -m unittest'
                 }
             }
 
