@@ -76,6 +76,7 @@ pipeline {
                     //     DOCKERHUB_CREDENTIALS = credentials('docker_jenkins')  // variable secret
                     // }
                     steps {
+                        sh 'echo $DOCKERHUB_CREDENTIALS_USR'
                         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                         echo 'Login Completed'
                         sh 'docker push $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG'
