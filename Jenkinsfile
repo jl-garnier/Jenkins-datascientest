@@ -45,10 +45,10 @@ pipeline {
 
         stage('User Acceptance') {
             steps {
-                returnValue = input (
-                    message = "Approve push on main?", ok = "Yes"
-                )
-                echo "User: ${params.user} requested to push the code to the main branch"
+                script {
+                    def returnValue = input(message: "Approve push on main?", ok: "Yes")
+                    echo "User: ${params.user} requested to push the code to the main branch"
+                }
             }
         }
 
