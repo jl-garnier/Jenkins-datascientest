@@ -10,10 +10,9 @@ pipeline {
          DOCKER_IMAGE = 'datascientestapi'
          DOCKER_TAG = "v.${BUILD_ID}.0" 
     }
-    tools {
-        python3 'python3'
-        python 'python3'
-    }
+    // tools {
+    //     python 'python3'
+    // }
     stages {
 
         stage('Building') {
@@ -27,9 +26,15 @@ pipeline {
         stage('Testing') {
 
             steps {
-                echo 'Execute units tests'
-                sh 'python -m unittest'
+                script { 
+                    echo 'Execute units tests'
+                    sh 'python -m unittest'
+                }
+                withPythonEnv('python') {
+                    sh 'python -m unittest'
+                }
             }
+
         }
 
         stage('Deploying') {
