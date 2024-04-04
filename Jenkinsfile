@@ -9,6 +9,8 @@ pipeline {
          DOCKER_ID = 'garnierjl'
          DOCKER_IMAGE = 'datascientestapi'
          DOCKER_TAG = "v.${BUILD_ID}.0" 
+         DOCKERHUB_CREDENTIALS = credentials('docker_jenkins')  // variable secret
+
     }
     // tools {
     //     python 'python3'
@@ -50,6 +52,7 @@ pipeline {
                     docker build -t $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG .
                     docker run -d -p 8000:8000 --name jenkins $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
                     '''
+                    echo 'Build Image Completed'
                 }
             }
         }
@@ -69,12 +72,14 @@ pipeline {
             parallel {
                 stage('Pushing Image') {
                     // environment variables at stage level
-                    environment {
-                        DOCKERHUB_CREDENTIALS = credentials('docker_jenkins')  // variable secret
-                    }
+                    // environment {
+                    //     DOCKERHUB_CREDENTIALS = credentials('docker_jenkins')  // variable secret
+                    // }
                     steps {
                         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                        echo 'Login Completed'
                         sh 'docker push $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG'
+                        echo 'Push Image Completed'
                       }
                   }
                   stage('Merging') {
