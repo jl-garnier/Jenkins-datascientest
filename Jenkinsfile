@@ -10,6 +10,10 @@ pipeline {
          DOCKER_IMAGE = 'datascientestapi'
          DOCKER_TAG = "v.${BUILD_ID}.0" 
     }
+    tools {
+        python3 'python3'
+        python 'python3'
+    }
     stages {
 
         stage('Building') {
@@ -81,7 +85,16 @@ pipeline {
         //         // Add steps for deployment
         //     }
         // }
-
+        stage('SonarQube analysis') {
+        steps {
+            script {
+            // requires SonarQube Scanner 2.8+
+            scannerHome = tool 'SonarQube Scanner 2.8'
+            }
+            withSonarQubeEnv('SonarQube Scanner') {
+            sh "${scannerHome}/bin/sonar-scanner"
+            }
+        }
     }
     post {
         always {
