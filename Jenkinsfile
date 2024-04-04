@@ -45,10 +45,11 @@ pipeline {
         stage('User Acceptance') {
             
             steps {
-                input {
-                    message: "Approve push on main?", ok: "Yes"
+                input message: 'Approve push on main?', ok: 'Yes',
+                // input {
+                //     message: "Approve push on main?", ok: "Yes"
 
-                }
+                // }
                 echo "User: ${username} requested to push the code the main branch"
             }
         }
